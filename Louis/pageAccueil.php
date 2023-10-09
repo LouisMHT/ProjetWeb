@@ -42,6 +42,7 @@ li a:hover {
 body {
   background-image: url("jeuplateau.jpeg");
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 </style>
