@@ -65,3 +65,14 @@ li a:hover:not(.active) {
   font-size: 20px; /* Taille de police du texte */
   color: #000000; /* Couleur du texte (noir dans cet exemple) */
 }
+
+.footer {
+  background-color: #9c9c9c;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+  color: #535353;
+}

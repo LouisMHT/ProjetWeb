@@ -66,12 +66,10 @@ require('header.inc.php')
 </div>
 <br>
 <br>
-<br>
-<div class="container">
-  <br>  
-  <p class="fw-bold fs-2 text-secondary">Jeux du moment</p>
-</div>
 
+<div class="footer">
+    <p>Création du site par Louis et Taher</p>
+</div>
 
 
 </body>
