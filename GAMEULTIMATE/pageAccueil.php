@@ -17,33 +17,60 @@ require('header.inc.php')
 <div class="positioned-text">Bienvenue sur Game Ultimate</div>
 <div class="positioned-text2">Bienvenue sur Game Ultimate, le site de jeux le plus populaire du moment !</div>
 
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
-Texte<br>
+
+<div class="container">
+  <br>  
+  <p class="fw-bold fs-2 text-secondary">Jeux du moment</p>
+  <div class="row">
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="Monopoly.jpg" class="card-img-top" alt="monopoly">
+        <div class="card-body">
+          <h5 class="card-title">Monopoly</h5>
+          <p class="card-text">Le Monopoly est un jeu de société sur parcours dont le but est, à travers l'achat et la vente de propriétés, de ruiner ses adversaires et ainsi parvenir au monopole.</p>
+          <a href="#" class="btn btn-primary">Détails</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="Monopoly.jpg" class="card-img-top" alt="monopoly">
+        <div class="card-body">
+          <h5 class="card-title">Monopoly</h5>
+          <p class="card-text">Le Monopoly est un jeu de société sur parcours dont le but est, à travers l'achat et la vente de propriétés, de ruiner ses adversaires et ainsi parvenir au monopole.</p>
+          <a href="#" class="btn btn-primary">Détails</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="Monopoly.jpg" class="card-img-top" alt="monopoly">
+        <div class="card-body">
+          <h5 class="card-title">Monopoly</h5>
+          <p class="card-text">Le Monopoly est un jeu de société sur parcours dont le but est, à travers l'achat et la vente de propriétés, de ruiner ses adversaires et ainsi parvenir au monopole.</p>
+          <a href="#" class="btn btn-primary">Détails</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="Monopoly.jpg" class="card-img-top" alt="monopoly">
+        <div class="card-body">
+          <h5 class="card-title">Monopoly</h5>
+          <p class="card-text">Le Monopoly est un jeu de société sur parcours dont le but est, à travers l'achat et la vente de propriétés, de ruiner ses adversaires et ainsi parvenir au monopole.</p>
+          <a href="#" class="btn btn-primary">Détails</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="container">
+  <br>  
+  <p class="fw-bold fs-2 text-secondary">Jeux du moment</p>
+</div>
 
 
 
