@@ -27,7 +27,7 @@ require('header.inc.php')
           <a class="nav-link" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a href="#">
+          <a href="Page de connexion.php">
             <button type="button" class="btn btn-outline-light">Connexion / Inscription</button>
           </a>
         </li>

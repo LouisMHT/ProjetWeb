@@ -1,37 +1,43 @@
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 0;
+.img-jumbo{
+  background-image: url('jeuplateau.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.positioned-text {
+  position: absolute; /* Position absolue */
+  left: 50%; /* Position horizontale à partir de la gauche */
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 2vw; /* Taille de police du texte */
+  color: #000000; /* Couleur du texte (noir dans cet exemple) */
+}
+
+.positioned-text2 {
+  position: absolute; /* Position absolue */
+  left: 50%; /* Position horizontale à partir de la gauche */
+  transform: translate(-50%, -50%);
+  font-size: 1.4vw; /* Taille de police du texte */
+  color: #000000; /* Couleur du texte (noir dans cet exemple) */
+}
+
+@media (max-width: 768px) {
+  .positioned-text {
+      font-size: 20px; /* Taille de police minimale pour les appareils mobiles */
   }
-  
-  .header {
-    background-color: #111;
-    padding: 30px;
-    text-align: center;
+  .positioned-text2 {
+      font-size: 15px; /* Taille de police minimale pour les appareils mobiles */
   }
-  
-  li {
-    float: left;
-  }
-  
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  li a:hover {
-    background-color: #111;
-  }
-  body {
-    background-image: url("jeuplateau.jpeg");
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+}
+
+.footer {
+  background-color: #9c9c9c;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+  color: #535353;
+}
