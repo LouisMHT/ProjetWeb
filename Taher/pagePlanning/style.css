@@ -1,0 +1,78 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+.full-size-image {
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}
+
+
+.centered-image {
+  position: absolute; /* Position absolue */
+  top: 275px; /* Position verticale à 50% du haut */
+  left: 50%; /* Position horizontale à 50% de la gauche */
+  transform: translate(-50%, -50%); /* Décalage pour centrer l'image */
+  width: 15%;
+}
+
+
+.positioned-text {
+  position: absolute; /* Position absolue */
+  top: 385px; /* Position verticale à partir du haut */
+  left: 50%; /* Position horizontale à partir de la gauche */
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 24px; /* Taille de police du texte */
+  color: #000000; /* Couleur du texte (noir dans cet exemple) */
+}
+
+.positioned-text2 {
+  position: absolute; /* Position absolue */
+  top: 430px; /* Position verticale à partir du haut */
+  left: 50%; /* Position horizontale à partir de la gauche */
+  transform: translate(-50%, -50%);
+  font-size: 20px; /* Taille de police du texte */
+  color: #000000; /* Couleur du texte (noir dans cet exemple) */
+}
+
+.footer {
+  background-color: #9c9c9c;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+  color: #535353;
+}
