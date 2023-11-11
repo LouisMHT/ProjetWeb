@@ -4,18 +4,58 @@ require('header.inc.php')
 ?>
 
 <body>
-<ul>
-<li><a  href="#logo"><img src="Game-Ultimate-09-10-2023.png" alt="Logo" width=28></a></li>
-  <li><a  href="#home">Accueil</a></li>
-  <li><a href="#news">Jeux</a></li>
-  <li><a href="#planning">Planning</a></li>
-  <li><a href="#contact">Contact</a></li>
-  <li style="float:right"><a  href="#connexion">Connexion/Inscription</a></li>
-</ul>
-<img src="jeuplateau.jpeg" class="full-size-image" alt="plateau">
-<img src="Game-Ultimate-09-10-2023.png" class="centered-image" alt="plateau">
-<div class="positioned-text">Bienvenue sur Game Ultimate</div>
-<div class="positioned-text2">Bienvenue sur Game Ultimate, le site de jeux le plus populaire du moment !</div>
+
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div class="container-fluid">
+    <img src="Game-Ultimate-09-10-2023.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="navbar-collapse collapse show" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Jeux</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Planning</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a href="Page de connexion.php">
+            <button type="button" class="btn btn-outline-light">Connexion / Inscription</button>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="jumbotron img-jumbo">
+  <div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <img src="Game-Ultimate-09-10-2023.png" alt="plateau" style="display: block; margin: 0 auto;" width=250>
+    <br>
+    <br>
+    <div class="positioned-text">Bienvenue sur Game Ultimate</div>
+    <br>
+    <br>
+    <br>
+    <div class="positioned-text2">Bienvenue sur Game Ultimate, le site de jeux le plus populaire du moment !</div>
+    <br>
+    <br>
+  </div>
+</div>
 
 
 <div class="container">
