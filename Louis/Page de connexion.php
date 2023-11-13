@@ -38,15 +38,17 @@ require('header.inc.php')
     <div class="col d-flex flex-column justify-content-center">
       <p class="text-center fs-2">Page de connexion/inscription</p>
       <p class="text-center">Pour vous connecter, remplissez les champs ci-dessous :</p>
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Nom d'utilisateur : </span>
-        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-      </div>
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Mot de Passe : </span>
-        <input type="password" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-      </div>
-      <button type="button" class="btn btn-primary btn-sm">Connexion</button>
+        <form action="login_traitement.php" method="post" class="d-flex flex-column justify-content-center">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="Username">Nom d'utilisateur : </span>
+            <input name="Username" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="Password">Mot de Passe : </span>
+            <input name="Password" type="password" class="form-control" aria-label="Password" aria-describedby="basic-addon1">
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm btn-block">Connexion</button>
+        </form>
       <br>
       <p class="text-center">Pour vous incrire, remplissez les champs ci-dessous :</p>
       <div class="input-group mb-3">
