@@ -16,7 +16,7 @@ require('header.inc.php')
     <div class="navbar-collapse collapse show" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+          <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Jeux</a>
@@ -24,11 +24,8 @@ require('header.inc.php')
         <li class="nav-item">
           <a class="nav-link" href="#">Planning</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="deconnexion.php">Contact</a>
-        </li>
-
-     
+        
+ 
         <?php
          //var_dump ($_SESSION['Username']);
           if (isset($_SESSION['Username'])) {
@@ -44,13 +41,6 @@ require('header.inc.php')
           }
         ?>
 
-
-
-
-
-
-
-          
         <!--li class="nav-item">
           <a href="Page de connexion.php">
             <button type="button" class="btn btn-outline-light">Connexion / Inscription</button>
