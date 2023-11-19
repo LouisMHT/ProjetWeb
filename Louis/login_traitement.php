@@ -1,10 +1,10 @@
 <?php
 $mysqli = new mysqli("localhost", "root", "root", "ultimategame");
 
-$input=$_POST['Username'];//aucun filtrage ni validation !!
+$username=$_POST['Username'];
 $password=$_POST['Password'];
 
-$res=$mysqli->query("SELECT statutUser FROM user WHERE pseudoUser='$input' AND mdpUser='$password';");
+$res=$mysqli->query("SELECT statutUser FROM user WHERE pseudoUser='$username' AND mdpUser='$password';");
 
 $row = $res->fetch_assoc(); //première ligne du résultat
 
@@ -14,14 +14,12 @@ if ($row) {
 
     session_start();
 
-    $_SESSION['Username']= $input;
+    $_SESSION['Username']= $username;
 
 
     header("Location: index.php");
 } else {
     header("Location: Page de connexion.php");
 }
-
-
-
+$mysqli->close();
 ?>
