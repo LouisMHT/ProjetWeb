@@ -9,13 +9,10 @@ $res=$mysqli->query("SELECT statutUser FROM user WHERE pseudoUser='$username' AN
 $row = $res->fetch_assoc(); //première ligne du résultat
 
 if ($row) {
-    $statutUser = $row['statutUser'];
-    //echo "Statut de l'utilisateur : $statutUser";
 
     session_start();
 
     $_SESSION['Username']= $username;
-
 
     header("Location: index.php");
 } else {

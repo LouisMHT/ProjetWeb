@@ -48,21 +48,17 @@ require('header.inc.php')
               </div>
               <div class=\"col d-flex flex-column justify-content-center\">
                 <p class=\"text-center fs-2\">Paramètre du compte</p>
-                <p class=\"text-center\">Pour changer vos informations, remplissez les champs ci-dessous :</p>
-                  <form action=\"login_traitement.php\" method=\"post\" class=\"d-flex flex-column justify-content-center\">
+                <p class=\"text-center\">Pour changer votre Mot de Passe, remplissez les champs ci-dessous :</p>
+                  <form action=\"modif_traitement.php\" method=\"post\" class=\"d-flex flex-column justify-content-center\">
                     <div class=\"input-group mb-3\">
-                      <span class=\"input-group-text\" id=\"Username\">Nom d'utilisateur : </span>
-                      <input name=\"Username\" type=\"text\" class=\"form-control\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">
+                      <span class=\"input-group-text\" id=\"basic-addon1\">Ancien Mot de Passe : </span>
+                      <input name=\"Oldpassword\" type=\"password\" class=\"form-control\" aria-label=\"Oldpassword\" aria-describedby=\"basic-addon1\">
                     </div>
                     <div class=\"input-group mb-3\">
-                            <span class=\"input-group-text\" id=\"basic-addon1\">Adresse Mail : </span>
-                            <input type=\"text\" class=\"form-control\" aria-label=\"Mail\" aria-describedby=\"basic-addon1\">
-                          </div>
-                    <div class=\"input-group mb-3\">
-                      <span class=\"input-group-text\" id=\"Password\">Mot de Passe : </span>
-                      <input name=\"Password\" type=\"password\" class=\"form-control\" aria-label=\"Password\" aria-describedby=\"basic-addon1\">
+                      <span class=\"input-group-text\" id=\"basic-addon1\">Nouveau Mot de Passe : </span>
+                      <input name=\"Newpassword\" type=\"password\" class=\"form-control\" aria-label=\"Newpassword\" aria-describedby=\"basic-addon1\">
                     </div>
-                    <button type=\"submit\" class=\"btn btn-primary btn-sm btn-block\">Modifier vos informations</button>
+                    <button type=\"submit\" class=\"btn btn-primary btn-sm\">Modification du Mot de Passe</button>
                   </form>
                 <br>
                 <br>

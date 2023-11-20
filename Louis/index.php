@@ -27,7 +27,7 @@ require('header.inc.php')
         
  
         <?php
-         //var_dump ($_SESSION['Username']);
+        
           if (isset($_SESSION['Username'])) {
               echo "<li class=\"nav-item\">
                       <a class=\"nav-link\" href=\"Page de connexion.php\"> " . $_SESSION['Username'] . "</a>
@@ -41,11 +41,6 @@ require('header.inc.php')
           }
         ?>
 
-        <!--li class="nav-item">
-          <a href="Page de connexion.php">
-            <button type="button" class="btn btn-outline-light">Connexion / Inscription</button>
-          </a>
-        </li-->
       </ul>
     </div>
   </div>
