@@ -40,30 +40,32 @@ require('header.inc.php')
   </div>
 </nav>
 
-
         <?php
+
           if (isset($_SESSION['Username'])) {
+              if (isset($_SESSION['notification'])) {
+                echo "<div class=\"container\" style=\"height: 100vh;\">
+                <div class=\"col\">
+                </div>
+                <div class=\"alert alert-success\" role=\"alert\">
+                " . $_SESSION['notification'] . "
+                </div>
+                <div class=\"col\">
+                </div>
+                </div>";
+                unset($_SESSION['notification']);
+              }else{
+                //rien
+              }
+
               echo "<div class=\"container d-flex align-items-center\" style=\"height: 100vh;\">
               <div class=\"col\">
               </div>
               <div class=\"col d-flex flex-column justify-content-center\">
                 <p class=\"text-center fs-2\">Paramètre du compte</p>
-                <p class=\"text-center\">Pour changer votre Mot de Passe, remplissez les champs ci-dessous :</p>
-                  <form action=\"modif_traitement.php\" method=\"post\" class=\"d-flex flex-column justify-content-center\">
-                    <div class=\"input-group mb-3\">
-                      <span class=\"input-group-text\" id=\"basic-addon1\">Ancien Mot de Passe : </span>
-                      <input name=\"Oldpassword\" type=\"password\" class=\"form-control\" aria-label=\"Oldpassword\" aria-describedby=\"basic-addon1\">
-                    </div>
-                    <div class=\"input-group mb-3\">
-                      <span class=\"input-group-text\" id=\"basic-addon1\">Nouveau Mot de Passe : </span>
-                      <input name=\"Newpassword\" type=\"password\" class=\"form-control\" aria-label=\"Newpassword\" aria-describedby=\"basic-addon1\">
-                    </div>
-                    <button type=\"submit\" class=\"btn btn-primary btn-sm\">Modification du Mot de Passe</button>
-                  </form>
+                <p class=\"text-center\">Pour vous déconnecter de la session, appuyez sur le bouton Déconnexion :</p>
                 <br>
-                <br>
-                <br>
-                <br>
+                
                 <a href=\"deconnexion.php\" class=\"d-flex flex-column justify-content-center\" style=\"text-decoration: none;\">
                   <button type=\"button\" class=\"btn btn-danger btn-sm\">Déconnexion</button>
                 </a>
