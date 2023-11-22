@@ -2,5 +2,7 @@
 session_start();
 session_unset();
 session_destroy();
-header("Location: index.php");
+header("Location: Page de connexion.php");
+session_start();
+$_SESSION['notificationdeco'] = "Vous êtes déconnecté !";
 ?>

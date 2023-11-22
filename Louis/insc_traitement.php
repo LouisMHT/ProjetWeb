@@ -9,9 +9,13 @@ $password=password_hash($_POST['Password'], PASSWORD_DEFAULT);
 $insert_query = "INSERT INTO user (nomUser, pseudoUser, mailUser, mdpUser, statutUser) VALUES ('$name', '$username', '$mail', '$password', 'membre')";
 
 if ($mysqli->query($insert_query) === TRUE) {
-    echo "Membre inscrit avec succès!";
+    session_start();
+    $_SESSION['notificationinsc'] = "Membre inscrit avec succès !";
+    header("Location: Page de connexion.php");
 } else {
-    echo "Erreur lors de l'inscription";
+    session_start();
+    $_SESSION['notificationinsc'] = "Erreur lors de l'inscription !";
+    header("Location: Page de connexion.php");
 }
 
 $mysqli->close();

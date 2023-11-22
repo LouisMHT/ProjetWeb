@@ -17,7 +17,7 @@ if ($row) {
         // Mot de passe correct
         session_start();
         $_SESSION['Username'] = $username;
-        $_SESSION['notification'] = "Vous êtes connecté !";
+        $_SESSION['notificationlogin'] = "Vous êtes connecté !";
         header("Location: Page de connexion.php");
 
     } else {
