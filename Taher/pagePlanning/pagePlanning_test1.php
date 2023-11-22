@@ -58,17 +58,24 @@ require('header.inc.php')
 </div>
 
 <?php 
+
       date_default_timezone_set('Europe/Paris');
-      // echo "testtt"
-      //$date = '1970-01-02';
-      //echo $date;
-      //echo strtotime($date);
-      echo date('d/m/Y h:i:s', 24*3600); 
-      //require('date.php');
-      //$date = new Date;
-      //$dates = $date->getAll(); 
+      
+      /* echo "testtt"         // TEST ZONE
+      
+      echo date('d/m/Y h:i:s'); 
+      echo '<br/>';
+      $date = '1970-01-02';
+      echo $date;
+      echo '<br/>' ;
+      echo 'strtotime : ', strtotime($date); */
+
+      require('date_test1.php');
+      $date = new Date;
+      $dates = $date->getAll();  
+      
 ?> 
- <pre>print_r($dates); </pre>
+<pre> <br/> print_r($dates); </pre>
 
 <br>
 <br>
