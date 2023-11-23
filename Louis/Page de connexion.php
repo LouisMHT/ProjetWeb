@@ -151,7 +151,7 @@ require('header.inc.php')
         echo"<div class=\"container\" style=\"height: 100vh;\">
                 <div class=\"row\">
                   <div class=\"col d-flex flex-column justify-content-center\">
-                    <div class=\"alert alert-success text-center\" role=\"alert\">
+                    <div class=\"alert alert-primary text-center\" role=\"alert\">
                       " . $_SESSION['notificationinsc'] . "
                     </div>
                   </div>
