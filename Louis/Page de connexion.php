@@ -5,7 +5,7 @@ require('header.inc.php')
 ?>
 
 <body>
-
+<!-- Barre de navigation -->
 <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
   <div class="container-fluid">
     <img src="Game-Ultimate-09-10-2023.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
@@ -38,9 +38,11 @@ require('header.inc.php')
     </div>
   </div>
 </nav>
-
+<!-- Contenu de la page -->
 <?php
+// Vérification si l'utilisateur est connecté
   if (isset($_SESSION['Username'])) {
+    // Page avec notification de login
     if (isset($_SESSION['notificationlogin'])) {
       echo"<div class=\"container\" style=\"height: 100vh;\">
               <div class=\"row\">
@@ -75,6 +77,7 @@ require('header.inc.php')
             ";
       unset($_SESSION['notificationlogin']);
     }else{
+      // Page sans notification de login
       echo"<div class=\"container d-flex align-items-center\" style=\"height: 100vh;\">
         <div class=\"col\">
         </div>
@@ -91,6 +94,7 @@ require('header.inc.php')
       </div>";}
   }else{
     if (isset($_SESSION['notificationdeco'])) {
+      // Page de connexion avec notification de déconnexion
       echo"<div class=\"container\" style=\"height: 100vh;\">
               <div class=\"row\">
                 <div class=\"col d-flex flex-column justify-content-center\">
@@ -147,6 +151,7 @@ require('header.inc.php')
             unset($_SESSION['notificationdeco']);
             session_destroy();
     }else{
+      // Page de connexion avec notification d'inscription
       if (isset($_SESSION['notificationinsc'])) {
         echo"<div class=\"container\" style=\"height: 100vh;\">
                 <div class=\"row\">
@@ -204,6 +209,7 @@ require('header.inc.php')
               unset($_SESSION['notificationinsc']);
               session_destroy();
       }else{
+        // Page de connexion classique
       echo "<div class=\"container d-flex align-items-center\" style=\"height: 100vh;\">
         <div class=\"col\">
         </div>
