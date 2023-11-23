@@ -1,10 +1,11 @@
 <?php
+session_start();
 $titre = "Game Ultimate";
 require('header.inc.php')
 ?>
 
 <body>
-
+<!-- Barre de navigation -->
 <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
   <div class="container-fluid">
     <img src="Game-Ultimate-09-10-2023.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
@@ -15,7 +16,7 @@ require('header.inc.php')
     <div class="navbar-collapse collapse show" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+          <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Jeux</a>
@@ -23,20 +24,29 @@ require('header.inc.php')
         <li class="nav-item">
           <a class="nav-link" href="#">Planning</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a href="Page de connexion.php">
-            <button type="button" class="btn btn-outline-light">Connexion / Inscription</button>
-          </a>
-        </li>
+        
+ 
+        <?php
+        
+          if (isset($_SESSION['Username'])) {
+              echo "<li class=\"nav-item\">
+                      <a class=\"nav-link\" href=\"Page de connexion.php\"> " . $_SESSION['Username'] . "</a>
+                    </li>";
+          }else{
+              echo '<li class="nav-item">
+                      <a href="Page de connexion.php">
+                          <button type="button" class="btn btn-outline-light">Connexion / Inscription</button>
+                      </a>
+                    </li>';
+          }
+        ?>
+
       </ul>
     </div>
   </div>
 </nav>
 
-
+<!-- Présentation du site -->
 <div class="jumbotron img-jumbo">
   <div class="container">
     <br>
@@ -57,7 +67,7 @@ require('header.inc.php')
   </div>
 </div>
 
-
+<!-- Cartes des jeux du moment -->
 <div class="container">
   <br>  
   <p class="fw-bold fs-2 text-secondary">Jeux du moment</p>
@@ -107,6 +117,7 @@ require('header.inc.php')
 <br>
 <br>
 
+<!-- Barre en bas de la page -->
 <div class="footer">
     <p>Création du site par Louis et Taher</p>
 </div>
