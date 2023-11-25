@@ -8,22 +8,26 @@ require('header.inc.php')
 <!-- Barre de navigation -->
 <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
   <div class="container-fluid">
-    <img src="Game-Ultimate-09-10-2023.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+    <img src="Images/Game-Ultimate-09-10-2023.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse collapse show" id="navbarNav">
       <ul class="navbar-nav">
+        <!-- Bouton Accueil -->
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
         </li>
+        <!-- Bouton Jeux -->
         <li class="nav-item">
-          <a class="nav-link" href="#">Jeux</a>
+          <a class="nav-link" href="Page des jeux.php">Jeux</a>
         </li>
+        <!-- Bouton Planning -->
         <li class="nav-item">
           <a class="nav-link" href="#">Planning</a>
         </li>
         <?php
+        // Si la session avec Username est défini alors on affiche le bouton avec le nom d'utilisateur
           if (isset($_SESSION['Username'])) {
               echo "<li class=\"nav-item\">
                       <a class=\"nav-link\" href=\"Page de connexion.php\"> " . $_SESSION['Username'] . "</a>

@@ -8,7 +8,7 @@ require('header.inc.php')
 <!-- Barre de navigation -->
 <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
   <div class="container-fluid">
-    <img src="Game-Ultimate-09-10-2023.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+    <img src="Images/Game-Ultimate-09-10-2023.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -19,7 +19,7 @@ require('header.inc.php')
           <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Jeux</a>
+          <a class="nav-link" href="Page des jeux.php">Jeux</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Planning</a>
@@ -54,7 +54,7 @@ require('header.inc.php')
     <br>
     <br>
     <br>
-    <img src="Game-Ultimate-09-10-2023.png" alt="plateau" style="display: block; margin: 0 auto;" width=250>
+    <img src="Images/Game-Ultimate-09-10-2023.png" alt="plateau" style="display: block; margin: 0 auto;" width=250>
     <br>
     <br>
     <div class="positioned-text">Bienvenue sur Game Ultimate</div>
@@ -74,7 +74,7 @@ require('header.inc.php')
   <div class="row">
     <div class="col">
       <div class="card" style="width: 18rem;">
-        <img src="Monopoly.jpg" class="card-img-top" alt="monopoly">
+        <img src="Images/Monopoly.jpg" class="card-img-top" alt="monopoly">
         <div class="card-body">
           <h5 class="card-title">Monopoly</h5>
           <p class="card-text">Le Monopoly est un jeu de société sur parcours dont le but est, à travers l'achat et la vente de propriétés, de ruiner ses adversaires et ainsi parvenir au monopole.</p>
@@ -84,7 +84,7 @@ require('header.inc.php')
     </div>
     <div class="col">
       <div class="card" style="width: 18rem;">
-        <img src="Monopoly.jpg" class="card-img-top" alt="monopoly">
+        <img src="Images/Monopoly.jpg" class="card-img-top" alt="monopoly">
         <div class="card-body">
           <h5 class="card-title">Monopoly</h5>
           <p class="card-text">Le Monopoly est un jeu de société sur parcours dont le but est, à travers l'achat et la vente de propriétés, de ruiner ses adversaires et ainsi parvenir au monopole.</p>
@@ -94,7 +94,7 @@ require('header.inc.php')
     </div>
     <div class="col">
       <div class="card" style="width: 18rem;">
-        <img src="Monopoly.jpg" class="card-img-top" alt="monopoly">
+        <img src="Images/Monopoly.jpg" class="card-img-top" alt="monopoly">
         <div class="card-body">
           <h5 class="card-title">Monopoly</h5>
           <p class="card-text">Le Monopoly est un jeu de société sur parcours dont le but est, à travers l'achat et la vente de propriétés, de ruiner ses adversaires et ainsi parvenir au monopole.</p>
@@ -104,7 +104,7 @@ require('header.inc.php')
     </div>
     <div class="col">
       <div class="card" style="width: 18rem;">
-        <img src="Monopoly.jpg" class="card-img-top" alt="monopoly">
+        <img src="Images/Monopoly.jpg" class="card-img-top" alt="monopoly">
         <div class="card-body">
           <h5 class="card-title">Monopoly</h5>
           <p class="card-text">Le Monopoly est un jeu de société sur parcours dont le but est, à travers l'achat et la vente de propriétés, de ruiner ses adversaires et ainsi parvenir au monopole.</p>
