@@ -1,6 +1,6 @@
 <?php
 // Connexion à la base de données
-$mysqli = new mysqli("localhost", "root", "root", "ultimategame");
+$mysqli = new mysqli("localhost", "grp_7_2", "5MTDK1pheIqm", "bdd_7_2");
 
 // Création des variables 
 $username=$_POST['Username'];

@@ -12,40 +12,22 @@ require('header.inc.php')
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
     <div class="navbar-collapse collapse show" id="navbarNav">
       <ul class="navbar-nav">
+        <!-- Bouton Accueil -->
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
         </li>
-
-
+        <!-- Bouton Jeux -->
+        <li class="nav-item">
+          <a class="nav-link" href="Page des jeux.php">Jeux</a>
+        </li>
+        <!-- Bouton Planning -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">Planning</a>
+        </li>
         <?php
-          if (isset($_SESSION['Username'])) {
-            echo "<li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"Page des jeux.php\">Jeux</a>
-                  </li>";
-          }else{
-            echo "<li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"#\" onclick=\"executerJavascript()\">Jeux</a>
-                  </li>";
-          }
-        ?>
-
-        <?php
-          if (isset($_SESSION['Username'])) {
-            echo "<li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"#\">Planning</a>
-                  </li>";
-          }else{
-            echo "<li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"#\" onclick=\"executerJavascript()\">Planning</a>
-                  </li>";
-          }
-        ?>
-        
- 
-        <?php
+        // Si la session avec Username est défini alors on affiche le bouton avec le nom d'utilisateur
           if (isset($_SESSION['Username'])) {
               echo "<li class=\"nav-item\">
                       <a class=\"nav-link\" href=\"Page de connexion.php\"> " . $_SESSION['Username'] . "</a>
@@ -58,33 +40,10 @@ require('header.inc.php')
                     </li>';
           }
         ?>
-
       </ul>
     </div>
   </div>
 </nav>
-
-<!-- Présentation du site -->
-<div class="jumbotron img-jumbo">
-  <div class="container">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <img src="Images/Game-Ultimate-09-10-2023.png" alt="plateau" style="display: block; margin: 0 auto;" width=250>
-    <br>
-    <br>
-    <div class="positioned-text">Bienvenue sur Game Ultimate</div>
-    <br>
-    <br>
-    <br>
-    <div class="positioned-text2">Bienvenue sur Game Ultimate, le site de jeux le plus populaire du moment !</div>
-    <br>
-    <br>
-  </div>
-</div>
-
 
 <!-- Cartes des jeux du moment -->
 <?php
@@ -97,7 +56,7 @@ $resultat = $mysqli->query("SELECT nomJeu, descriptionJeu, photoJeu FROM jeu");
 // Début du container
 echo '<div class="container">
         <br>
-        <p class="fw-bold fs-2 text-secondary">Jeux</p>';
+        <p class="fw-bold fs-2 text-secondary">Page des jeux</p>';
 
 // Compteur pour suivre le nombre de jeux par ligne
 $jeuxLigne = 0;
@@ -125,8 +84,8 @@ while ($jeu = $resultat->fetch_assoc()) {
     // Vérifier si 4 jeux ont été affichés, si oui, commencer une nouvelle ligne
     if ($jeuxLigne === 4) {
         echo '</div>';
+        echo '<div class="row">';
         $jeuxLigne = 0;
-        break;
     }
 }
 
@@ -141,36 +100,10 @@ echo '</div>';
 $mysqli->close();
 ?>
 
-<br>
-<br>
-
 <!-- Barre en bas de la page -->
 <div class="footer">
     <p>Création du site par Louis et Taher</p>
 </div>
-
-
-<script>
-  function executerJavascript() {
-    // Code JavaScript pour les notifications
-    if ('Notification' in window) {
-      Notification.requestPermission().then(function(permission) {
-        if (permission === 'granted') {
-          function afficherNotification(message) {
-            var notification = new Notification('Connexion Utilisateur', {
-              body: message,
-            });
-          }
-          afficherNotification('Connectez vous pour acceder à cette page !');
-        } else {
-          console.warn('La permission de notification n\'est pas accordée.');
-        }
-      });
-    } else {
-      console.warn('Les notifications ne sont pas prises en charge par ce navigateur.');
-    }
-  }
-</script>
 
 </body>
 </html>

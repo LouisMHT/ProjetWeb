@@ -1,6 +1,6 @@
 <?php
 // Connexion à la base de données en ligne
-$mysqli = new mysqli("localhost", "root", "root", "ultimategame");
+$mysqli = new mysqli("localhost", "grp_7_2", "5MTDK1pheIqm", "bdd_7_2");
 
 // Définition des variables que l'on va utiliser
 $name = $_POST['Name'];
