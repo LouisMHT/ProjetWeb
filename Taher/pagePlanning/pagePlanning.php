@@ -1,9 +1,11 @@
 <?php
 $titre = "Planning des jeux";
-require('header.inc.php')
+require('header.inc.php');
 ?>
 
 <body>
+
+  <!------------------ Code pour la barre de navigation (Louis)---------------->
 
   <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
     <div class="container-fluid">
@@ -37,6 +39,8 @@ require('header.inc.php')
   </nav>
 
 
+  <!------------------- Code pour la page d'accueil (Louis)-------------------------->
+
   <div class="jumbotron img-jumbo">
     <div class="container">
       <br>
@@ -58,102 +62,11 @@ require('header.inc.php')
   </div>
 
   <?php
-  $servername = "localhost";
-  $username = "root";
-  $password = "root";
-  $dbname = "ultimategame";
-
-  // Créer une connexion à la base de données
-  $conn = new mysqli($servername, $username, $password, $dbname);
-
-  // Vérifier la connexion
-  if ($conn->connect_error) {
-    die("problème de connexion à la bdd " . $conn->connect_error);
-  }
-
-  // Fonction pour récupérer les parties depuis la base de données
-  function getGames($conn)
-  {
-    $sql = "SELECT * FROM partie";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-      return $result->fetch_all(MYSQLI_ASSOC);
-    } else {
-      return [];
-    }
-  }
-
-  // Fonction pour ajouter une partie dans la base de données
-  function addGame($conn, $nomJeu, $date, $heurePartie)
-  {
-    $sql = "INSERT INTO partie (nomJeu, date, heurePartie) VALUES ('$nomJeu', '$date', '$heurePartie')";
-    $conn->query($sql);
-  }
-
-  // Fonction pour modifier une partie dans la base de données
-  function updateGame($conn, $idPartie, $nomJeu, $date, $heurePartie)
-  {
-    $sql = "UPDATE partie SET nomJeu='$nomJeu', date='$date', heurePartie='$heurePartie' WHERE idPartie=$idPartie";
-    $conn->query($sql);
-  }
-
-  // fonction pour récupérer les détails d'un jeu par son ID 
-  function getGameById($conn, $idPartie)
-  {
-    $sql = "SELECT * FROM partie WHERE idPartie = $idPartie";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows == 1) {
-      return $result->fetch_assoc();
-    } else {
-      return null;
-    }
-  }
-
-  // Fonction pour supprimer une partie de la base de données
-  function deleteGame($conn, $idPartie)
-  {
-    $sql = "DELETE FROM partie WHERE idPartie=$idPartie";
-    $conn->query($sql);
-  }
-
-  // Traiter les actions
-  if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Ajouter une nouvelle partie
-    if (isset($_POST["action"]) && $_POST["action"] === "add") {
-      $nomJeu = $_POST["nomJeu"];
-      $date = $_POST["date"];
-      $heurePartie = $_POST["heurePartie"];
-      addGame($conn, $nomJeu, $date, $heurePartie);
-    }
-    /* // Modifier une partie existante v1
-    elseif (isset($_POST["action"]) && $_POST["action"] === "update") {
-      $idPartie = $_POST["idPartie"];
-      $nomJeu = $_POST["nomJeu"];
-      $date = $_POST["date"];
-      $heurePartie = $_POST["heurePartie"];
-      updateGame($conn, $idPartie, $nomJeu, $date, $heurePartie);
-    } */
-    // Modifier une partie existante v2
-    elseif (isset($_POST["action"]) && $_POST["action"] === "edit") {
-      $idPartie = $_POST["idPartie"];
-      $gameToEdit = getGameById($conn, $idPartie);
-    }
-  }
-
-  // Supprimer une partie
-  if (isset($_GET["action"]) && $_GET["action"] === "delete" && isset($_GET["id"])) {
-    $idPartieToDelete = $_GET["id"];
-    deleteGame($conn, $idPartieToDelete);
-  }
-
-  // Charger les parties
-  $games = getGames($conn);
+  require('connexion_bdd_fonctions_planning.php');
   ?>
 
   <!DOCTYPE html>
-  <html lang="en">
+  <html lang="fr">
 
   <head>
     <meta charset="UTF-8">
@@ -161,7 +74,6 @@ require('header.inc.php')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planning des jeux</title>
     <style>
-      /* Ajoutez votre style CSS ici selon vos préférences */
       table {
         border-collapse: collapse;
         width: 100%;
@@ -183,6 +95,7 @@ require('header.inc.php')
   <body>
     <h2>Planning des jeux à venir</h2>
 
+    <!-- Formulaire pour ajouté une partie -->
     <form method="post">
       <label for="nomJeu">Nom du jeu:</label>
       <input type="text" id="nomJeu" name="nomJeu" required>
@@ -197,6 +110,7 @@ require('header.inc.php')
       <input type="submit" value="Ajouter">
     </form>
 
+    <!-- Tableau qui affiche les parties existantes -->
     <table>
       <tr>
         <th>Nom du jeu</th>
@@ -210,7 +124,10 @@ require('header.inc.php')
           <td><?= $game['date'] ?></td>
           <td><?= $game['heurePartie'] ?></td>
           <td>
+            <!-- lien pour supprimer une partie -->
             <a href="?action=delete&id=<?= $game['idPartie'] ?>">Supprimer</a>
+
+            <!-- formulaire pour éditer une partie -->
             <form method="post" style="display:inline;">
               <input type="hidden" name="action" value="edit">
               <input type="hidden" name="idPartie" value="<?= $game['idPartie'] ?>">
@@ -219,10 +136,10 @@ require('header.inc.php')
           </td>
         </tr>
       <?php endforeach; ?>
-
     </table>
+
+    <!-- Formulaire pour modifier une partie -->
     <?php if (isset($gameToEdit)) : ?>
-      <!-- Afficher le formulaire de modification si un jeu est en cours de modification -->
       <h3>Modifier la partie</h3>
       <form method="post">
         <input type="hidden" name="action" value="update">
@@ -243,14 +160,17 @@ require('header.inc.php')
 
   </html>
 
-
-  <br>
-
   <div class="footer">
+    <!-- fin page -->
     <p>Création du site par Louis et Taher</p>
   </div>
-
 
 </body>
 
 </html>
+
+<?php
+
+// Fermeture de la connexion à la base de données
+$BD->close();
+?>
