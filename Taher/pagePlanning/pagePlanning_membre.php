@@ -17,13 +17,13 @@ require('header.inc.php');
       <div class="navbar-collapse collapse show" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+            <a class="nav-link" href="#">Accueil</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Jeux</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Planning</a>
+            <a class="nav-link active" aria-current="page" href="pagePlanning.php">Planning</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
@@ -62,7 +62,19 @@ require('header.inc.php');
   </div>
 
   <?php
-  require('connexion_bdd_fonctions_planning.php');
+  $titre = "Planning des jeux";
+
+  require('bdd_fonctions_membre.php');
+
+  // Récupérer la liste de souhaits du membre (exemple avec $idUser = 1, à remplacer par la session utilisateur)
+  $userWishlist = getWishlist($BD, 1);
+
+  // Récupérer la liste des jeux depuis la base de données
+  $jeux = getJeux($BD);
+
+  // Récupérer les parties à venir depuis la base de données
+  $games = getGames($BD);
+
   ?>
 
   <!DOCTYPE html>
@@ -93,30 +105,26 @@ require('header.inc.php');
   </head>
 
   <body>
-    <h2>Planning des jeux à venir</h2>
 
-    <!-- Formulaire pour ajouté une partie -->
-    <form method="post">
-      <label for="nomJeu">Nom du jeu:</label>
-      <input type="text" id="nomJeu" name="nomJeu" required>
 
-      <label for="date">Date:</label>
-      <input type="date" id="date" name="date" required>
 
-      <label for="heurePartie">Heure de la partie:</label>
-      <input type="time" id="heurePartie" name="heurePartie" required>
+    <h2>Liste de souhaits</h2>
 
-      <input type="hidden" name="action" value="add">
-      <input type="submit" value="Ajouter">
-    </form>
+    <ul>
+      <?php foreach ($userWishlist as $wishlistItem) : ?>
+        <li><?= $wishlistItem['jeuxListe'] ?></li>
+      <?php endforeach; ?>
+    </ul>
 
-    <!-- Tableau qui affiche les parties existantes -->
+    <!-- Tableau des parties à venir -->
+    <h2>Parties à venir</h2>
+
     <table>
       <tr>
         <th>Nom du jeu</th>
         <th>Date</th>
         <th>Heure de la partie</th>
-        <th>Action</th>
+        <th>Inscription</th>
       </tr>
       <?php foreach ($games as $game) : ?>
         <tr>
@@ -124,38 +132,18 @@ require('header.inc.php');
           <td><?= $game['date'] ?></td>
           <td><?= $game['heurePartie'] ?></td>
           <td>
-            <!-- lien pour supprimer une partie -->
-            <a href="?action=delete&id=<?= $game['idPartie'] ?>">Supprimer</a>
-
-            <!-- formulaire pour éditer une partie -->
-            <form method="post" style="display:inline;">
-              <input type="hidden" name="action" value="edit">
+            <!-- formulaire d'inscription à une partie -->
+            <form method="post" action="bdd_fonctions_membre.php">
+              <input type="hidden" name="action" value="register">
               <input type="hidden" name="idPartie" value="<?= $game['idPartie'] ?>">
-              <input type="submit" value="Modifier">
+              <input type="submit" value="S'inscrire">
             </form>
           </td>
         </tr>
       <?php endforeach; ?>
     </table>
 
-    <!-- Formulaire pour modifier une partie -->
-    <?php if (isset($gameToEdit)) : ?>
-      <h3>Modifier la partie</h3>
-      <form method="post">
-        <input type="hidden" name="action" value="update">
-        <input type="hidden" name="idPartie" value="<?= $gameToEdit['idPartie'] ?>">
-        <label for="editNom">Nom du jeu:</label>
-        <input type="text" id="editNom" name="nomJeu" value="<?= $gameToEdit['nomJeu'] ?>" required>
 
-        <label for="editDate">Date:</label>
-        <input type="date" id="editDate" name="date" value="<?= $gameToEdit['date'] ?>" required>
-
-        <label for="editHeure">Heure de la partie:</label>
-        <input type="time" id="editHeure" name="heurePartie" value="<?= $gameToEdit['heurePartie'] ?>" required>
-
-        <input type="submit" value="Modifier">
-      </form>
-    <?php endif; ?>
   </body>
 
   </html>
