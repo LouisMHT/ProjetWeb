@@ -68,13 +68,25 @@ require('header.inc.php')
                   <br>
                   <a href=\"deconnexion.php\" class=\"d-flex flex-column justify-content-center\" style=\"text-decoration: none;\">
                     <button type=\"button\" class=\"btn btn-danger btn-sm\">Déconnexion</button>
-                  </a>
-                </div>
+                  </a>";
+      if ($_SESSION['statutUser'] === 'admin'){
+        echo"<br><a href=\"Page Admin.php\" class=\"d-flex flex-column justify-content-center\" style=\"text-decoration: none;\">
+              <button type=\"button\" class=\"btn btn-danger btn-sm\">Page Administrateur</button>
+            </a>
+            </div>
                 <div class=\"col\">
                 </div>
               </div>
             </div>
             ";
+      }else{
+        echo"</div>
+            <div class=\"col\">
+            </div>
+            </div>
+            </div>
+            ";
+      }
       unset($_SESSION['notificationlogin']);
     }else{
       // Page sans notification de login
@@ -87,11 +99,25 @@ require('header.inc.php')
           <br>
           <a href=\"deconnexion.php\" class=\"d-flex flex-column justify-content-center\" style=\"text-decoration: none;\">
             <button type=\"button\" class=\"btn btn-danger btn-sm\">Déconnexion</button>
-          </a>
-        </div>
-        <div class=\"col\">
-        </div>
-      </div>";}
+            </a>";
+            if ($_SESSION['statutUser'] === 'admin'){
+              echo"<br><a href=\"Page Admin.php\" class=\"d-flex flex-column justify-content-center\" style=\"text-decoration: none;\">
+                    <button type=\"button\" class=\"btn btn-danger btn-sm\">Page Administrateur</button>
+                  </a>
+                  </div>
+                      <div class=\"col\">
+                      </div>
+                    </div>
+                  </div>
+                  ";
+            }else{
+              echo"</div>
+                  <div class=\"col\">
+                  </div>
+                  </div>
+                  </div>
+                  ";
+            }}
   }else{
     if (isset($_SESSION['notificationdeco'])) {
       // Page de connexion avec notification de déconnexion
