@@ -13,6 +13,7 @@ $res=$mysqli->query("SELECT * FROM user WHERE pseudoUser='$username';");
 $row = $res->fetch_assoc();
 
 $statutUser = $row['statutUser'];
+$idUser = $row['idUser'];
 
 
 // Vérification du résultat
@@ -27,6 +28,7 @@ if ($row) {
         // Création des variables de session
         $_SESSION['Username'] = $username;
         $_SESSION['statutUser'] = $statutUser;
+        $_SESSION['idUser'] = $idUser;
         // Envoie du message
         $_SESSION['notificationlogin'] = "Vous êtes connecté !";
         // Redirection vers la page de connexion

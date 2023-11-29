@@ -34,9 +34,16 @@ require('header.inc.php')
 
         <?php
           if (isset($_SESSION['Username'])) {
-            echo "<li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"#\">Planning</a>
+            if ($_SESSION['statutUser'] === 'admin'){
+              echo "<li class=\"nav-item\">
+                      <a class=\"nav-link\" href=\"pagePlanning_admin.php\">Planning</a>
+                    </li>";
+            }else{
+              echo "<li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"pagePlanning_membre.php\">Planning</a>
                   </li>";
+            }
+            
           }else{
             echo "<li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"#\" onclick=\"executerJavascript()\">Planning</a>

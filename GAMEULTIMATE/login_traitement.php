@@ -12,6 +12,10 @@ $res=$mysqli->query("SELECT * FROM user WHERE pseudoUser='$username';");
 // Lecture de la première ligne du résultat
 $row = $res->fetch_assoc();
 
+$statutUser = $row['statutUser'];
+$idUser = $row['idUser'];
+
+
 // Vérification du résultat
 if ($row) {
     // Vérifier le mot de passe
@@ -23,6 +27,8 @@ if ($row) {
         session_start();
         // Création des variables de session
         $_SESSION['Username'] = $username;
+        $_SESSION['statutUser'] = $statutUser;
+        $_SESSION['idUser'] = $idUser;
         // Envoie du message
         $_SESSION['notificationlogin'] = "Vous êtes connecté !";
         // Redirection vers la page de connexion

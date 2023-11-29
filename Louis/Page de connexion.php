@@ -18,22 +18,54 @@ require('header.inc.php')
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Page des jeux.php">Jeux</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Planning</a>
-        </li>
+
+
+        <?php
+          if (isset($_SESSION['Username'])) {
+            echo "<li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"Page des jeux.php\">Jeux</a>
+                  </li>";
+          }else{
+            echo "<li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"#\" onclick=\"executerJavascript()\">Jeux</a>
+                  </li>";
+          }
+        ?>
+
+        <?php
+          if (isset($_SESSION['Username'])) {
+            if ($_SESSION['statutUser'] === 'admin'){
+              echo "<li class=\"nav-item\">
+                      <a class=\"nav-link\" href=\"pagePlanning_admin.php\">Planning</a>
+                    </li>";
+            }else{
+              echo "<li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"pagePlanning_membre.php\">Planning</a>
+                  </li>";
+            }
+            
+          }else{
+            echo "<li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"#\" onclick=\"executerJavascript()\">Planning</a>
+                  </li>";
+          }
+        ?>
         
+ 
         <?php
           if (isset($_SESSION['Username'])) {
               echo "<li class=\"nav-item\">
                       <a class=\"nav-link\" href=\"Page de connexion.php\"> " . $_SESSION['Username'] . "</a>
                     </li>";
           }else{
-              echo ' ';
+              echo '<li class="nav-item">
+                      <a href="Page de connexion.php">
+                          <button type="button" class="btn btn-outline-light">Connexion / Inscription</button>
+                      </a>
+                    </li>';
           }
         ?>
+
       </ul>
     </div>
   </div>
@@ -279,6 +311,28 @@ require('header.inc.php')
         </div>
       </div>";}}}
 ?>
+
+<script>
+  function executerJavascript() {
+    // Code JavaScript pour les notifications
+    if ('Notification' in window) {
+      Notification.requestPermission().then(function(permission) {
+        if (permission === 'granted') {
+          function afficherNotification(message) {
+            var notification = new Notification('Connexion Utilisateur', {
+              body: message,
+            });
+          }
+          afficherNotification('Connectez vous pour acceder à cette page !');
+        } else {
+          console.warn('La permission de notification n\'est pas accordée.');
+        }
+      });
+    } else {
+      console.warn('Les notifications ne sont pas prises en charge par ce navigateur.');
+    }
+  }
+</script>
 
 </body>
 </html>
