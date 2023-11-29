@@ -23,7 +23,7 @@ require('header.inc.php');
             <a class="nav-link" href="#">Jeux</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="pagePlanning.php">Planning</a>
+            <a class="nav-link active" aria-current="page" href="pagePlanning_membre.php">Planning</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
@@ -62,19 +62,16 @@ require('header.inc.php');
   </div>
 
   <?php
-  $titre = "Planning des jeux";
-
   require('bdd_fonctions_membre.php');
-
-  // Récupérer la liste de souhaits du membre (exemple avec $idUser = 1, à remplacer par la session utilisateur)
-  $userWishlist = getWishlist($BD, 1);
 
   // Récupérer la liste des jeux depuis la base de données
   $jeux = getJeux($BD);
 
-  // Récupérer les parties à venir depuis la base de données
-  $games = getGames($BD);
+  // Récupérer la liste des jeux dans la liste du joueur
+  $listeJeuxJoueur = getListeJeuxJoueur($BD, $_SESSION['idUser']);
 
+  // Récupérer les parties auxquelles le joueur s'est inscrit
+  $partiesInscrites = getPartiesInscrites($BD, $_SESSION['idUser']);
   ?>
 
   <!DOCTYPE html>
@@ -107,24 +104,14 @@ require('header.inc.php');
   <body>
 
 
-
-    <h2>Liste de souhaits</h2>
-
-    <ul>
-      <?php foreach ($userWishlist as $wishlistItem) : ?>
-        <li><?= $wishlistItem['jeuxListe'] ?></li>
-      <?php endforeach; ?>
-    </ul>
-
-    <!-- Tableau des parties à venir -->
-    <h2>Parties à venir</h2>
-
+    <!-- Tableau qui affiche les parties existantes -->
+    <h2>Planning des jeux à venir</h2>
     <table>
       <tr>
         <th>Nom du jeu</th>
         <th>Date</th>
         <th>Heure de la partie</th>
-        <th>Inscription</th>
+        <th>Action</th>
       </tr>
       <?php foreach ($games as $game) : ?>
         <tr>
@@ -132,13 +119,32 @@ require('header.inc.php');
           <td><?= $game['date'] ?></td>
           <td><?= $game['heurePartie'] ?></td>
           <td>
-            <!-- formulaire d'inscription à une partie -->
-            <form method="post" action="bdd_fonctions_membre.php">
-              <input type="hidden" name="action" value="register">
-              <input type="hidden" name="idPartie" value="<?= $game['idPartie'] ?>">
-              <input type="submit" value="S'inscrire">
-            </form>
+            <?php
+            // Vérifier si l'ID du jeu fait partie de la liste de l'utilisateur
+            if (in_array($game['idJeu'], $listeJeuxJoueur)) {
+              echo "Déjà inscrit";
+            } else {
+              echo "<a href=\"?action=addWishlist&id={$game['idPartie']}\">S'incrire dans la partie</a>";
+            }
+            ?>
           </td>
+        </tr>
+      <?php endforeach; ?>
+    </table>
+
+    <!-- Tableau qui affiche les parties auxquelles le joueur est inscrit -->
+    <h2>Parties auxquelles vous êtes inscrit</h2>
+    <table>
+      <tr>
+        <th>Nom du jeu</th>
+        <th>Date</th>
+        <th>Heure de la partie</th>
+      </tr>
+      <?php foreach ($partiesInscrites as $partie) : ?>
+        <tr>
+          <td><?= $partie['nomJeu'] ?></td>
+          <td><?= $partie['date'] ?></td>
+          <td><?= $partie['heurePartie'] ?></td>
         </tr>
       <?php endforeach; ?>
     </table>
@@ -153,12 +159,7 @@ require('header.inc.php');
     <p>Création du site par Louis et Taher</p>
   </div>
 
-</body>
-
-</html>
-
-<?php
-
-// Fermeture de la connexion à la base de données
-$BD->close();
-?>
+  <?php
+  // Fermeture de la connexion à la base de données
+  $BD->close();
+  ?>

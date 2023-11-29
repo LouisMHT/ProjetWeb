@@ -24,14 +24,10 @@ try {
 }
 
 // ------------ Fonctions -----------------------------------------------------
+$_SESSION['idUser'] = 1; // à enlever une fois connecté! 
 
 
-//---------------------------------------------------------------
-//---------MEMBRE-----------------------------------------------
-
-
-
-// Récupérer les parties à venir depuis la base de données -------------------------
+// récupérer les parties depuis la base de données
 function getGames($BD)
 {
     $sql = "SELECT partie.*, jeu.nomJeu FROM partie JOIN jeu ON partie.idJeu = jeu.idJeu";
@@ -44,20 +40,7 @@ function getGames($BD)
     }
 }
 
-// Récupérer la liste de souhaits d'un membre -------------------------------------
-function getWishlist($BD, $idUser)
-{
-    $sql = "SELECT * FROM liste WHERE userListe = $idUser";
-    $result = $BD->query($sql);
-
-    if ($result->num_rows > 0) {
-        return $result->fetch_all(MYSQLI_ASSOC);
-    } else {
-        return [];
-    }
-}
-
-// Récupérer la liste des jeux depuis la base de données -------------------------
+// récupérer la liste des jeux depuis la base de données -------------------------
 function getJeux($BD)
 {
     $sql = "SELECT idJeu, nomJeu FROM jeu";
@@ -71,38 +54,64 @@ function getJeux($BD)
     return $jeux;
 }
 
-// Inscrire un membre à une partie ------------------------------------------------
-function registerToGame($BD, $idUser, $idPartie)
+// récupérer la liste des jeux dans la liste du joueur ---------------------------
+function getListeJeuxJoueur($BD, $idUser)
 {
-    // Vérifier si le membre est déjà inscrit à la partie
-    $checkSql = "SELECT * FROM inscriptions WHERE idUser = $idUser AND idPartie = $idPartie";
-    $checkResult = $BD->query($checkSql);
+    $sql = "SELECT jeuxListe FROM liste WHERE userListe = $idUser";
+    $result = $BD->query($sql);
 
-    if ($checkResult->num_rows > 0) {
-        echo "Vous êtes déjà inscrit à cette partie.";
-        return;
-    }
-
-    // Ajouter l'inscription à la partie
-    $insertSql = "INSERT INTO inscriptions (idUser, idPartie) VALUES ($idUser, $idPartie)";
-    $BD->query($insertSql);
-
-    if ($BD->error) {
-        echo "Erreur lors de l'inscription à la partie : " . $BD->error;
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return explode(',', $row['jeuxListe']);
     } else {
-        echo "Inscription réussie !";
+        return [];
+    }
+}
+
+// Ajouter un jeu à la liste de souhaits ---------------------------------------
+function addWishlist($BD, $idUser, $idPartie)
+{
+    // Récupérer le jeu associé à la partie
+    $sql = "SELECT idJeu FROM partie WHERE idPartie = $idPartie";
+    $result = $BD->query($sql);
+
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        $idJeu = $row['idJeu'];
+
+        // Ajouter le jeu à la liste du joueur
+        $sql = "INSERT INTO liste (userListe, jeuxListe) VALUES ($idUser, $idJeu)";
+        $BD->query($sql);
+    }
+}
+
+// Récupérer les parties auxquelles le joueur s'est inscrit
+function getPartiesInscrites($BD, $idUser)
+{
+    $sql = "SELECT partie.*, jeu.nomJeu FROM partie 
+            JOIN inscription ON partie.idPartie = inscription.idPartie 
+            JOIN jeu ON partie.idJeu = jeu.idJeu 
+            WHERE inscription.idUser = $idUser";
+    $result = $BD->query($sql);
+
+    // Vérifier si la requête a réussi et si $result est un objet
+    if ($result && $result->num_rows > 0) {
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } else {
+        return [];
     }
 }
 
 // Traitement des actions --------------------------------------------------------
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST["action"]) && $_POST["action"] === "register") {
-        $idUser = 1; // Remplacez 1 par la logique pour obtenir l'ID de l'utilisateur connecté
-        $idPartie = $_POST["idPartie"];
-        registerToGame($BD, $idUser, $idPartie);
-        // Ajout pour afficher un message d'erreur
-        if ($BD->error) {
-            echo "Erreur lors de l'inscription à la partie : " . $BD->error;
-        }
-    }
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    // Ajouter d'autres actions au besoin
 }
+
+// Ajouter un jeu à la liste de souhaits ---------------------------------------
+if (isset($_GET["action"]) && $_GET["action"] === "addWishlist" && isset($_GET["id"])) {
+    $idPartieToAdd = $_GET["id"];
+    addWishlist($BD, $_SESSION['idUser'], $idPartieToAdd);
+}
+
+// Charger les parties --------------------------------------------------------
+$games = getGames($BD);
