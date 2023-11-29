@@ -1,17 +1,17 @@
 <?php
 
 // -----------------Connexion à la BDD-----------------------------------------
-
+/*
 $servername = "localhost";
 $username = "root";
 $motDePasse = "root";
 $dbname = "ultimategame";
-/*
-$servername = "moduleweb.esigelec.fr";
+*/
+$servername = "localhost";
 $username = "grp_7_2";
 $motDePasse = "5MTDK1pheIqm";
 $dbname = "bdd_7_2";
-*/
+
 
 try {
     $BD = new mysqli($servername, $username, $motDePasse, $dbname);
